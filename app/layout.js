@@ -1,9 +1,9 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Kırmızı Mangal | Mangal & Kebap Restoranı",
+  title: "Kırmızzı Mangal | Mangal & Kebap Restoranı",
   description:
-    "Kırmızı Mangal - Odun ateşinde pişen kebaplar, ızgaralar ve geleneksel lezzetler. QR menümüze göz atın.",
+    "Kırmızzı Mangal - Odun ateşinde pişen kebaplar, ızgaralar ve geleneksel lezzetler. QR menümüze göz atın.",
 };
 
 export default function RootLayout({ children }) {

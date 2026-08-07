@@ -47,7 +47,7 @@ export default function HomePage() {
       <section className="section" id="hakkimizda">
         <div className="container">
           <h2 className="section-title">
-            Neden <span>Kırmızı Mangal</span>?
+            Neden <span>Kırmızzı Mangal</span>?
           </h2>
           <p className="section-sub">Ustalık, tazelik ve ateşin lezzeti bir arada</p>
           <div className="features">

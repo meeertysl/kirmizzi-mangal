@@ -15,7 +15,7 @@ export async function GET(request) {
   return new NextResponse(png, {
     headers: {
       "Content-Type": "image/png",
-      "Content-Disposition": 'inline; filename="kirmizi-mangal-qr.png"',
+      "Content-Disposition": 'inline; filename="kirmizzi-mangal-qr.png"',
     },
   });
 }

@@ -40,7 +40,7 @@ export default function AdminApp() {
     <div className="admin-shell">
       <div className="admin-topbar">
         <div className="title">
-          KIRMIZI <span>MANGAL</span> · Yönetim
+          KIRMIZZI <span>MANGAL</span> · Yönetim
         </div>
         <div style={{ display: "flex", gap: 10 }}>
           <a href="/menu" target="_blank" className="btn-sm btn-ghost" style={{ color: "#eee", borderColor: "#555", textDecoration: "none", lineHeight: "1.4" }}>
@@ -492,7 +492,7 @@ function QrTab() {
         <p className="hint">
           Bu kod <strong>{menuUrl}</strong> adresine yönlendirir.
         </p>
-        <a href={qrSrc} download="kirmizi-mangal-qr.png" className="btn btn-red">
+        <a href={qrSrc} download="kirmizzi-mangal-qr.png" className="btn btn-red">
           ⬇ QR Kodu İndir (PNG)
         </a>
         <p className="hint" style={{ maxWidth: 480, textAlign: "center" }}>

@@ -3,14 +3,14 @@ const RED = "#d1201f";
 /*
  * Orijinal logonun SVG yeniden çizimi:
  * - Üstte: çatal (sola yatık) + alev + spatula (sağa yatık)
- * - Ortada: KIRMIZI — batı/western tarzı, gövdeleri ortadan çentikli harfler
+ * - Ortada: KIRMIZZI — batı/western tarzı, gövdeleri ortadan çentikli harfler
  * - Altta: MAN + çapraz satırlar (cleaver) + GAL
  */
 
 // Ortası çentikli dikey harf gövdesi (x = sol kenar)
 const stem = (x) => `M${x},0 h24 v42 l-7,8 7,8 v42 h-24 v-42 l7,-8 -7,-8 Z`;
 
-const KIRMIZI_PATHS = [
+const KIRMIZZI_PATHS = [
   // K (0-70)
   stem(0),
   "M24,54 L46,0 H70 L38,54 Z",
@@ -29,8 +29,10 @@ const KIRMIZI_PATHS = [
   stem(300),
   // Z (338-398)
   "M338,0 H398 V16 L364,84 H398 V100 H338 V84 L372,16 H338 Z",
-  // I (412-436)
-  stem(412),
+  // Z (412-472)
+  "M412,0 H472 V16 L438,84 H472 V100 H412 V84 L446,16 H412 Z",
+  // I (486-510)
+  stem(486),
 ];
 
 function Cleaver({ dark, hole }) {
@@ -74,9 +76,9 @@ export default function Logo({ size = "md", light = false }) {
         </g>
       </svg>
 
-      {/* KIRMIZI */}
-      <svg className="logo-word" viewBox="0 0 436 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="KIRMIZI">
-        {KIRMIZI_PATHS.map((d, i) => (
+      {/* KIRMIZZI */}
+      <svg className="logo-word" viewBox="0 0 510 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="KIRMIZZI">
+        {KIRMIZZI_PATHS.map((d, i) => (
           <path key={i} d={d} fill={RED} />
         ))}
       </svg>

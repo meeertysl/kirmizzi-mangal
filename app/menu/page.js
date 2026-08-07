@@ -6,8 +6,8 @@ import CategoryTabs from "./CategoryTabs";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Menü | Kırmızı Mangal",
-  description: "Kırmızı Mangal QR menü - kebaplar, ızgaralar, mezeler ve daha fazlası.",
+  title: "Menü | Kırmızzı Mangal",
+  description: "Kırmızzı Mangal QR menü - kebaplar, ızgaralar, mezeler ve daha fazlası.",
 };
 
 export default function MenuPage() {

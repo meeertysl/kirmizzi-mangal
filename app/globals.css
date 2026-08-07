@@ -73,7 +73,7 @@ img {
 }
 
 .logo-word {
-  width: calc(190px * var(--logo-scale, 1));
+  width: calc(222px * var(--logo-scale, 1));
   height: auto;
   margin-top: calc(4px * var(--logo-scale, 1));
 }

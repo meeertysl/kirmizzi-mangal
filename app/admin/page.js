@@ -5,7 +5,7 @@ import AdminApp from "./AdminApp";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Yönetim Paneli | Kırmızı Mangal",
+  title: "Yönetim Paneli | Kırmızzı Mangal",
   robots: { index: false, follow: false },
 };
 

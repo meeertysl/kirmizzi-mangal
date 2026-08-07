@@ -1,6 +1,6 @@
-# Kırmızı Mangal — Web Sitesi & QR Menü
+# Kırmızzı Mangal — Web Sitesi & QR Menü
 
-Kırmızı Mangal restoranı için web sitesi, QR menü ve yönetim paneli.
+Kırmızzı Mangal restoranı için web sitesi, QR menü ve yönetim paneli.
 
 ## Özellikler
 
