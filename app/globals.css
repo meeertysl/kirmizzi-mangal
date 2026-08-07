@@ -72,28 +72,32 @@ img {
   height: auto;
 }
 
-.logo-text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  line-height: 1;
+.logo-word {
+  width: calc(190px * var(--logo-scale, 1));
+  height: auto;
+  margin-top: calc(4px * var(--logo-scale, 1));
 }
 
-.logo-kirmizi {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: calc(2.4rem * var(--logo-scale, 1));
-  letter-spacing: calc(0.04em * var(--logo-scale, 1));
-  color: var(--red);
+.logo-mangal-row {
+  display: flex;
+  align-items: center;
+  gap: calc(8px * var(--logo-scale, 1));
+  margin-top: calc(3px * var(--logo-scale, 1));
+}
+
+.logo-cleavers {
+  width: calc(34px * var(--logo-scale, 1));
+  height: auto;
 }
 
 .logo-mangal {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: calc(1.05rem * var(--logo-scale, 1));
-  letter-spacing: calc(0.55em);
-  margin-left: 0.55em;
+  letter-spacing: calc(0.45em);
+  margin-right: -0.45em; /* letter-spacing'in son harften sonra bıraktığı boşluğu dengeler */
   color: var(--black);
+  line-height: 1;
 }
 
 .logo-mangal-light {
