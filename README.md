@@ -32,8 +32,23 @@ npm start
 Veriler `data/db.json` dosyasında, yüklenen görseller `public/uploads/` klasöründe tutulur.
 Sunucu değiştirirken bu iki konumu yedeklemeniz yeterlidir.
 
+### Hostinger (Business / Cloud) üzerinde
+
+hPanel → **Websites → Add Website → Node.js web app** ile bu GitHub deposunu bağlayın
+(framework: Next.js otomatik algılanır; build: `npm run build`).
+
+Her GitHub push'unda Hostinger uygulama klasörünü yeniden kurduğu için, verilerin
+silinmemesi adına şu **ortam değişkenlerini** (environment variables) tanımlayın:
+
+| Değişken | Örnek değer | Açıklama |
+|---|---|---|
+| `DATA_DIR` | `/home/KULLANICI/app-data` | Menü verisi + admin şifresi burada tutulur |
+| `UPLOAD_DIR` | `/home/KULLANICI/app-uploads` | Yüklenen ürün görselleri burada tutulur |
+
+Bu klasörler uygulama dizininin dışında olduğu için güncellemelerde korunur.
+
 > Not: Kalıcı dosya sistemi gerektirdiği için Vercel gibi salt-okunur (serverless) platformlar yerine
-> bir VPS (ör. DigitalOcean, Hetzner) veya Railway/Render gibi kalıcı disk sunan platformlarda barındırın.
+> Hostinger Business/Cloud, bir VPS veya Railway/Render gibi kalıcı disk sunan platformlarda barındırın.
 
 ## Teknik
 
