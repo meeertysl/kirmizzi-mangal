@@ -59,49 +59,51 @@ img {
 }
 
 /* ---------- Logo ---------- */
-.logo {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: calc(2px * var(--logo-scale, 1));
+.logo-img {
+  display: block;
+  height: auto;
   user-select: none;
 }
 
-.logo-flame {
-  width: calc(64px * var(--logo-scale, 1));
-  height: auto;
+.logo-sm {
+  width: 100px;
 }
 
-.logo-word {
-  width: calc(222px * var(--logo-scale, 1));
-  height: auto;
-  margin-top: calc(4px * var(--logo-scale, 1));
+.logo-md {
+  width: 200px;
 }
 
-.logo-mangal-row {
-  display: flex;
-  align-items: center;
-  gap: calc(8px * var(--logo-scale, 1));
-  margin-top: calc(3px * var(--logo-scale, 1));
+.logo-lg {
+  width: 340px;
 }
 
-.logo-cleavers {
-  width: calc(34px * var(--logo-scale, 1));
-  height: auto;
+/* Koyu zeminlerde logonun oturduğu beyaz kart */
+.logo-badge {
+  display: inline-block;
+  background: #fff;
+  line-height: 0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
 }
 
-.logo-mangal {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: calc(1.05rem * var(--logo-scale, 1));
-  letter-spacing: calc(0.45em);
-  margin-right: -0.45em; /* letter-spacing'in son harften sonra bıraktığı boşluğu dengeler */
-  color: var(--black);
-  line-height: 1;
+.logo-badge-sm {
+  padding: 6px 10px;
+  border-radius: 10px;
 }
 
-.logo-mangal-light {
-  color: var(--cream);
+.logo-badge-md {
+  padding: 12px 18px;
+  border-radius: 14px;
+}
+
+.logo-badge-lg {
+  padding: 18px 28px;
+  border-radius: 18px;
+}
+
+@media (max-width: 640px) {
+  .logo-lg {
+    width: 250px;
+  }
 }
 
 /* ---------- Header ---------- */
