@@ -1,0 +1,8 @@
+# Kırmızzı Mangal
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # /menu kısa adresi
+  RewriteRule ^menu/?$ menu.php [L]
+</IfModule>

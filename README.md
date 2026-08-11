@@ -1,58 +1,44 @@
-# Kırmızzı Mangal — Web Sitesi & QR Menü
+# Kırmızzı Mangal — Web Sitesi & QR Menü (PHP)
 
 Kırmızzı Mangal restoranı için web sitesi, QR menü ve yönetim paneli.
+**PHP + JSON depolama** ile çalışır; Hostinger Single/Premium gibi paylaşımlı
+hosting paketlerinde ek kurulum gerektirmeden çalışacak şekilde tasarlanmıştır.
 
 ## Özellikler
 
-- **Web sitesi** (`/`) — Tanıtım sayfası: hakkımızda, öne çıkan lezzetler, iletişim bilgileri
-- **QR Menü** (`/menu`) — Mobil öncelikli menü sayfası; kategori sekmeleri, ürün görselleri, fiyatlar, "tükendi" durumu
+- **Web sitesi** (`index.php`) — Tanıtım sayfası: hakkımızda, öne çıkan lezzetler, iletişim
+- **QR Menü** (`menu.php`, kısa adres: `/menu`) — Mobil öncelikli menü; kategori sekmeleri, görseller, fiyatlar, "tükendi" durumu
 - **Yönetim Paneli** (`/admin`) — Şifreli panel:
   - Kategori ekleme / silme / yeniden adlandırma / sıralama
-  - Ürün ekleme / düzenleme / silme, görsel yükleme, satışta/tükendi durumu
-  - QR kod oluşturma ve PNG indirme
-  - Restoran bilgileri (telefon, adres, saatler, Instagram, Google Maps) ve şifre değiştirme
+  - Ürün ekleme / düzenleme / silme, görsel yükleme, satışta/tükendi
+  - QR kod oluşturma ve yüksek çözünürlüklü PNG indirme
+  - Restoran bilgileri ve şifre değiştirme
 
-## Kurulum
+Varsayılan admin şifresi: **admin123** — canlıya aldıktan sonra ilk iş değiştirin!
 
-```bash
-npm install
-npm run dev
-```
-
-Site: http://localhost:3000
-Admin paneli: http://localhost:3000/admin — varsayılan şifre: **admin123** (ilk girişte Ayarlar sekmesinden değiştirin).
-
-## Yayına Alma (Production)
+## Yerel çalıştırma
 
 ```bash
-npm run build
-npm start
+php -S localhost:8000 router.php
 ```
 
-Veriler `data/db.json` dosyasında, yüklenen görseller `public/uploads/` klasöründe tutulur.
-Sunucu değiştirirken bu iki konumu yedeklemeniz yeterlidir.
+Site: http://localhost:8000 · Admin: http://localhost:8000/admin
 
-### Hostinger (Business / Cloud) üzerinde
+## Hostinger'a kurulum
 
-hPanel → **Websites → Add Website → Node.js web app** ile bu GitHub deposunu bağlayın
-(framework: Next.js otomatik algılanır; build: `npm run build`).
+1. hPanel → **Web Sitesi → Kontrol Paneli → Gelişmiş → GIT**
+2. Depo: `https://github.com/meeertysl/kirmizzi-mangal.git`, dal: `master`, dizin: (boş = public_html)
+3. **Deploy** edin. Sonraki güncellemelerde aynı ekrandan tekrar deploy edebilir
+   veya otomatik dağıtım (webhook) açabilirsiniz.
 
-Her GitHub push'unda Hostinger uygulama klasörünü yeniden kurduğu için, verilerin
-silinmemesi adına şu **ortam değişkenlerini** (environment variables) tanımlayın:
-
-| Değişken | Örnek değer | Açıklama |
-|---|---|---|
-| `DATA_DIR` | `/home/KULLANICI/app-data` | Menü verisi + admin şifresi burada tutulur |
-| `UPLOAD_DIR` | `/home/KULLANICI/app-uploads` | Yüklenen ürün görselleri burada tutulur |
-
-Bu klasörler uygulama dizininin dışında olduğu için güncellemelerde korunur.
-
-> Not: Kalıcı dosya sistemi gerektirdiği için Vercel gibi salt-okunur (serverless) platformlar yerine
-> Hostinger Business/Cloud, bir VPS veya Railway/Render gibi kalıcı disk sunan platformlarda barındırın.
+Veriler `data/db.json` dosyasında, görseller `uploads/` klasöründe tutulur;
+ikisi de repoda olmadığından (untracked) git dağıtımları bunları silmez.
+Yedek almak için hPanel Dosya Yöneticisi'nden bu iki konumu indirmeniz yeterlidir.
 
 ## Teknik
 
-- Next.js (App Router) + React
-- Veri: JSON dosyası (`data/db.json`) — harici veritabanı gerekmez
-- Kimlik doğrulama: HMAC imzalı çerez, scrypt ile şifre özeti
-- QR üretimi: `qrcode` paketi
+- PHP 8+ (framework yok, tek başına çalışır)
+- Veri: JSON dosyası (`data/db.json`) — veritabanı gerekmez
+- Kimlik doğrulama: PHP session + `password_hash` (bcrypt), CSRF korumalı formlar
+- QR üretimi: tarayıcıda `qrcode` JS kütüphanesi (CDN)
+- `data/` ve `inc/` klasörleri `.htaccess` ile dışarıya kapalıdır

@@ -1,9 +1,10 @@
+# Çalışma verileri (sunucuda oluşur, repoya girmez)
+data/db.json
+data/*.tmp
+uploads/*
+!uploads/.gitkeep
+
+# Sistem
+.DS_Store
 node_modules/
 .next/
-out/
-.env*.local
-.DS_Store
-data/db.json
-data/secret.key
-public/uploads/*
-!public/uploads/.gitkeep

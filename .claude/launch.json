@@ -2,10 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "kirmizi-mangal",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
-      "port": 3000
+      "name": "kirmizzi-mangal-php",
+      "runtimeExecutable": "php",
+      "runtimeArgs": ["-S", "localhost:8000", "router.php"],
+      "port": 8000
     }
   ]
 }
