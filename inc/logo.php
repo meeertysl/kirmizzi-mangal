@@ -8,9 +8,17 @@ require_once __DIR__ . '/config.php';
  * - Altta: MAN + çapraz satırlar (cleaver) + GAL
  */
 
+// Tuscan/western stili gövde: düz omuzlar, üst/alt ortada küçük sivri çıkıntı,
+// belde hafif içbükeylik
 function km_logo_stem($x)
 {
-    return "M{$x},0 h24 v42 l-7,8 7,8 v42 h-24 v-42 l7,-8 -7,-8 Z";
+    $x9 = $x + 9;
+    $x12 = $x + 12;
+    $x15 = $x + 15;
+    $x24 = $x + 24;
+    $xr = $x + 21.5;
+    $xl = $x + 2.5;
+    return "M{$x},3 L{$x9},1 L{$x12},-4 L{$x15},1 L{$x24},3 L{$xr},50 L{$x24},97 L{$x15},99 L{$x12},104 L{$x9},99 L{$x},97 L{$xl},50 Z";
 }
 
 function km_logo($size = 'md', $light = false)
@@ -22,38 +30,45 @@ function km_logo($size = 'md', $light = false)
     $hole = $light ? '#1a1a1a' : '#faf7f2';
     $mangalCls = $light ? 'logo-mangal logo-mangal-light' : 'logo-mangal';
 
-    $paths = [
+    // Her harf ayrı grup: uçlara doğru hafif büyüyen "yelpaze" etkisi için
+    // taban çizgisine (y=100) sabitlenmiş ölçek uygulanır.
+    $letters = [
         // K (0-70)
-        km_logo_stem(0),
-        'M24,54 L46,0 H70 L38,54 Z',
-        'M24,46 H38 L70,100 H46 Z',
+        ['cx' => 35, 'paths' => [km_logo_stem(0), 'M20,54 L46,0 H70 L38,54 Z', 'M20,46 H38 L70,100 H46 Z']],
         // I (84-108)
-        km_logo_stem(84),
+        ['cx' => 96, 'paths' => [km_logo_stem(84)]],
         // R (122-188)
-        km_logo_stem(122),
-        'M146,0 H172 Q188,0 188,22 Q188,44 172,44 H146 V28 H166 Q172,28 172,22 Q172,16 166,16 H146 Z',
-        'M150,44 L188,100 H164 L146,54 V44 Z',
+        ['cx' => 155, 'paths' => [
+            km_logo_stem(122),
+            'M143,0 H172 Q188,0 188,22 Q188,44 172,44 H143 V28 H166 Q172,28 172,22 Q172,16 166,16 H143 Z',
+            'M147,44 L188,100 H164 L143,54 V44 Z',
+        ]],
         // M (202-286)
-        km_logo_stem(202),
-        km_logo_stem(262),
-        'M222,0 H240 L244,26 L248,0 H266 L244,58 Z',
+        ['cx' => 244, 'paths' => [km_logo_stem(202), km_logo_stem(262), 'M222,0 H240 L244,26 L248,0 H266 L244,58 Z']],
         // I (300-324)
-        km_logo_stem(300),
-        // Z (338-398)
-        'M338,0 H398 V16 L364,84 H398 V100 H338 V84 L372,16 H338 Z',
+        ['cx' => 312, 'paths' => [km_logo_stem(300)]],
+        // Z (338-398) — üst ve alt barda merkez çıkıntılı
+        ['cx' => 368, 'paths' => ['M338,0 H360 L368,-6 L376,0 H398 V16 L364,84 H398 V100 H376 L368,106 L360,100 H338 V84 L372,16 H338 Z']],
         // Z (412-472)
-        'M412,0 H472 V16 L438,84 H472 V100 H412 V84 L446,16 H412 Z',
+        ['cx' => 442, 'paths' => ['M412,0 H434 L442,-6 L450,0 H472 V16 L438,84 H472 V100 H450 L442,106 L434,100 H412 V84 L446,16 H412 Z']],
         // I (486-510)
-        km_logo_stem(486),
+        ['cx' => 498, 'paths' => [km_logo_stem(486)]],
     ];
+    $scales = [1.072, 1.04, 1.008, 0.976, 0.976, 1.008, 1.04, 1.072];
 
     $cleaver = '<path d="M4,8 H22 Q28,8 28,14 Q28,20 22,20 H8 Q4,20 4,14 Z" fill="' . $dark . '"/>'
         . '<rect x="26" y="11" width="18" height="6" rx="3" fill="' . $dark . '"/>'
         . '<circle cx="40" cy="14" r="1.8" fill="' . $hole . '"/>';
 
     $word = '';
-    foreach ($paths as $d) {
-        $word .= '<path d="' . $d . '" fill="' . $red . '"/>';
+    foreach ($letters as $i => $letter) {
+        $s = $scales[$i];
+        $cx = $letter['cx'];
+        $word .= '<g transform="translate(' . $cx . ' 100) scale(' . $s . ') translate(-' . $cx . ' -100)">';
+        foreach ($letter['paths'] as $d) {
+            $word .= '<path d="' . $d . '" fill="' . $red . '"/>';
+        }
+        $word .= '</g>';
     }
 
     echo '<div class="logo" style="--logo-scale:' . $scale . '">'
@@ -74,7 +89,7 @@ function km_logo($size = 'md', $light = false)
         . '</g>'
         . '</svg>'
         // KIRMIZZI
-        . '<svg class="logo-word" viewBox="0 0 510 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="KIRMIZZI">' . $word . '</svg>'
+        . '<svg class="logo-word" viewBox="-4 -14 518 124" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="KIRMIZZI">' . $word . '</svg>'
         // MAN + çapraz satırlar + GAL
         . '<div class="logo-mangal-row" aria-label="MANGAL">'
         . '<span class="' . $mangalCls . '">MAN</span>'

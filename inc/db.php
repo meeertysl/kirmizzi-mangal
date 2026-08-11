@@ -8,7 +8,7 @@ function km_default_db()
             'name' => 'Kırmızzı Mangal',
             'slogan' => 'Ateşin ve lezzetin buluştuğu yer',
             'about' => 'Kırmızzı Mangal olarak en taze etleri, ustalıkla hazırlanan mezeleri ve geleneksel mangal lezzetlerini sofranıza getiriyoruz. Odun ateşinde, ustaların elinde pişen kebaplarımızla damaklarda iz bırakıyoruz.',
-            'phone' => '0500 000 00 00',
+            'phone' => '+90 536 089 23 35',
             'whatsapp' => '',
             'address' => 'Adres bilgisini admin panelden güncelleyiniz',
             'instagram' => '',
