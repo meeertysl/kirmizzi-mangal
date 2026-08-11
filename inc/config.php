@@ -9,3 +9,12 @@ function e($s)
 {
     return htmlspecialchars((string) $s, ENT_QUOTES, 'UTF-8');
 }
+
+// Statik dosya adresine sürüm ekler — dosya her değiştiğinde
+// tarayıcı/CDN önbelleği otomatik olarak kırılır.
+function km_asset($relPath, $prefix = '')
+{
+    $full = KM_ROOT . '/' . ltrim($relPath, '/');
+    $v = file_exists($full) ? filemtime($full) : 1;
+    return $prefix . $relPath . '?v=' . $v;
+}

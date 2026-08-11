@@ -19,7 +19,7 @@ $phoneHref = 'tel:' . preg_replace('/\s+/', '', $s['phone']);
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="<?= e(km_asset('assets/style.css')) ?>">
 </head>
 <body>
   <header class="site-header">
