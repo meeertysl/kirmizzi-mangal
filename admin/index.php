@@ -258,31 +258,35 @@ function img_src($url)
         <div class="panel">
           <h2>QR Menü Kodu</h2>
           <div class="qr-preview">
-            <canvas id="qrcanvas" width="280" height="280"></canvas>
+            <img id="qrimg" width="280" height="280" alt="QR menü kodu">
             <p class="hint">Bu kod <strong id="qrurl"></strong> adresine yönlendirir.</p>
-            <a href="#" id="qrdl" class="btn btn-red">⬇ QR Kodu İndir (PNG)</a>
+            <a href="#" id="qrdl" download="kirmizzi-mangal-qr.png" class="btn btn-red">⬇ QR Kodu İndir (PNG)</a>
             <p class="hint" style="max-width:480px;text-align:center">
-              İndirdiğiniz yüksek çözünürlüklü QR kodu masa kartlarına, broşürlere veya vitrine
-              bastırabilirsiniz. Müşterileriniz telefon kamerasıyla okutarak menüye ulaşır.
+              İndirme başlamazsa yukarıdaki QR görselinin üzerine <strong>basılı tutup
+              "Görseli kaydet"</strong> diyebilirsiniz. İndirdiğiniz yüksek çözünürlüklü QR kodu
+              masa kartlarına, broşürlere veya vitrine bastırabilirsiniz. Müşterileriniz telefon
+              kamerasıyla okutarak menüye ulaşır.
             </p>
           </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js"></script>
         <script>
-          (function () {
+          // QR sayfa açılırken yüksek çözünürlüklü üretilir; indirme butonu düz bir
+          // bağlantıya dönüşür. (Tıklama anında üretim, mobil tarayıcılarda indirmeyi
+          // engelliyordu.)
+          (async function () {
             const url = location.origin + "/menu.php";
             document.getElementById("qrurl").textContent = url;
-            const opts = { margin: 2, color: { dark: "#1a1a1a", light: "#ffffff" } };
-            QRCode.toCanvas(document.getElementById("qrcanvas"), url, { ...opts, width: 280 });
-            document.getElementById("qrdl").addEventListener("click", async (e) => {
-              e.preventDefault();
-              const c = document.createElement("canvas");
-              await QRCode.toCanvas(c, url, { ...opts, width: 1000 });
-              const a = document.createElement("a");
-              a.href = c.toDataURL("image/png");
-              a.download = "kirmizzi-mangal-qr.png";
-              a.click();
-            });
+            const c = document.createElement("canvas");
+            await QRCode.toCanvas(c, url, { width: 1000, margin: 2, color: { dark: "#1a1a1a", light: "#ffffff" } });
+            const dataUrl = c.toDataURL("image/png");
+            document.getElementById("qrimg").src = dataUrl; // uzun basıp kaydetme de çalışır
+            const link = document.getElementById("qrdl");
+            if (c.toBlob) {
+              c.toBlob((blob) => { link.href = URL.createObjectURL(blob); }, "image/png");
+            } else {
+              link.href = dataUrl;
+            }
           })();
         </script>
 
